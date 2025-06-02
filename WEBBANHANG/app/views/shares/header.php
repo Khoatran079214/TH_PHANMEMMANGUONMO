@@ -17,16 +17,36 @@ navigation">
             <span class="navbar-toggler-icon"></span> 
         </button> 
         <div class="collapse navbar-collapse" id="navbarNav"> 
-            <ul class="navbar-nav"> 
-                <li class="nav-item"> 
-                    <a class="nav-link" href="/WEBBANHANG/Product/">Danh sách sản 
-phẩm</a> 
-                </li> 
-                <li class="nav-item"> 
-                    <a class="nav-link" href="/WEBBANHANG/Product/add">Thêm sản 
-phẩm</a> 
-                </li> 
-            </ul> 
+           <ul class="navbar-nav">
+<li class="nav-item">
+<a class="nav-link" href="/webbanhang/Product/">Danh sách sản phẩm</a>
+</li>
+<?php if (SessionHelper::isAdmin()): ?>
+<li class="nav-item">
+<a class="nav-link" href="/webbanhang/Product/add">Thêm sản phẩm</a>
+</li>
+<?php endif; ?>
+<li class="nav-item">
+<?php
+if (SessionHelper::isLoggedIn()) {
+echo "<a class='nav-link'>" . htmlspecialchars($_SESSION['username']) . "
+
+(" . SessionHelper::getRole() . ")</a>";
+} else {
+echo "<a class='nav-link' href='/webbanhang/account/login'>Đăng nhập</a>";
+}
+?>
+</li>
+<li class="nav-item">
+<?php
+if (SessionHelper::isLoggedIn()) {
+echo "<a class='nav-link' href='/webbanhang/account/logout'>Đăng
+
+xuất</a>";
+}
+?>
+</li>
+</ul>
         </div> 
     </nav> 
     <div class="container mt-4">
